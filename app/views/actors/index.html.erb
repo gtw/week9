@@ -1,0 +1,15 @@
+<h1>Actors</h1>
+
+
+<% @actors.each do |actor| %>
+  <div class="row">
+    <div class="col-md-3">
+      <%= image_tag actor.photo_url, :class => "col-md-10" %>
+    </div>
+    <div class="col-md-9">
+      <h2><%= actor.name %></h2>
+
+      <p class="lead"><%= actor.bio %></p>
+    </div>
+  </div>
+<% end %>

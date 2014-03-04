@@ -1,0 +1,37 @@
+<div class="page-header">
+
+  <%= link_to "Add a New Movie", "/movies/new",
+              :class => "pull-right btn btn-success btn-large" %>
+
+  <h1>Movies</h1>
+</div>
+
+<% @movies.each do |movie| %>
+  <div class="row">
+    <div class="col-md-3">
+      <%= image_tag movie.poster_url, :class => "col-md-10" %>
+    </div>
+    <div class="col-md-9">
+      <h2>
+        <%= link_to movie.title, movie_path(movie.id) %>
+        (<%= movie.year %>)
+      </h2>
+      <p class="lead">
+        <span class="label label-success"><%= movie.duration %> minutes</span>
+      </p>
+      <p class="lead"><%= movie.plot %></p>
+      <p>Directed by <%= movie.director.name %></p>
+
+      <p>Starring:</p>
+      <% movie.actors.each do |actor| %>
+        <% if actor.photo_url.present? %>
+          <%= image_tag(actor.photo_url, size: "100", class: 'img-circle') %>
+        <% end %>
+      <% end %>
+      <p>
+        <%= link_to "Edit This Movie", edit_movie_path(movie.id) %> |
+        <%= link_to "Delete This Movie", movie_path(movie.id), :method => 'delete' %>
+      </p>
+    </div>
+  </div>
+<% end %>
